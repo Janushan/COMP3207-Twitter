@@ -1,0 +1,29 @@
+.tweet-post-root {
+    margin-bottom: 0.4rem;
+}
+
+.tweet-post-paper {
+    min-width: 30rem;
+    width: auto;
+    max-width: 30rem;
+    padding: 1.5rem;
+}
+  
+.tweet-post-author-name {
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+    font-weight: 600 !important;
+}
+  
+.tweet-post-author-info {
+    color: #748592;
+}
+  
+.tweet-post-content {
+    padding-left: 3.5rem;
+}
+
+.tweet-list-container {
+    padding: 0;
+    margin: 0;
+}

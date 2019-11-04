@@ -1,0 +1,15 @@
+.tweet-create-avatar {
+    margin-left: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.tweet-create-textfield {
+    width: 65%;
+    margin-left: 2rem;
+}
+
+.tweet-create-button {
+    margin-top: 0.5rem;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+}
