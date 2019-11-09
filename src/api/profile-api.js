@@ -15,7 +15,7 @@ export class ProfileApi {
           "Content-Type": "application/json",
           "X-Functions-Key": API_KEY
         },
-        url: API_URL + "/api/users/" + id,
+        url: API_URL + "api/users/" + id,
         method: "get",
         data: {}
       };

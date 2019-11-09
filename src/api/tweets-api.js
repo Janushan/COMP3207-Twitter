@@ -15,7 +15,7 @@ export class TweetsApi {
           "Content-Type": "application/json",
           "X-Functions-Key": API_KEY
         },
-        url: API_URL + "/api/users/" + userId + "/tweets",
+        url: API_URL + "api/users/" + userId + "/tweets",
         method: "get",
         data: {}
       };

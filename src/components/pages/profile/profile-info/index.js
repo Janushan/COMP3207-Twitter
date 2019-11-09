@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
 
-import { Link } from 'react-router-dom';
-
 import {InitialHelper} from "../../../../helpers/initialHelper"
 
 import "./styles.css";
@@ -84,16 +82,6 @@ export default class ProfileInfo extends Component {
                         <Grid className="profile-row-small" container alignItems="center">
                             <DateRangeOutlinedIcon color="secondary" className="profile-calendar-icon"/>
                             <Typography className="tweet-post-author-info" variant="body1">{moment(created).fromNow()}</Typography>
-                        </Grid>
-                        <Grid container>
-                            <Link>
-                                <Grid container>
-                                    <Typography className="profile-emphasis-number" variant="body1">{followingCount}</Typography>
-                                    <Typography className="profile-emphasis-number-label" variant="body1">Following</Typography>
-                                </Grid>
-                            </Link>
-                            <Typography className="profile-emphasis-number" variant="body1">{followerCount}</Typography>
-                            <Typography className="profile-emphasis-number-label" variant="body1">Followers</Typography>
                         </Grid>
                     </Paper>
                 </Grid>
