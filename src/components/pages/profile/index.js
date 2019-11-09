@@ -10,6 +10,7 @@ import FollowingProfile from '../../profle-list';
 import FollowerProfile from '../../profle-list';
 
 import LoadingSpinner from '../../../assets/loading-spinner.gif';
+import "./styles.css";
 
 export default class Profile extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ export default class Profile extends Component {
             <Grid container direction="column" alignItems="center">
                 { this.state.loading && <p>loading... <img src={LoadingSpinner} alt="Loading spinner" /></p> }
                 { !this.state.loading && 
-                    <div>
+                    <div className="profile-spacing">
                         {this.state.profile.map(profile => (
                         <div key={profile.id}>
                             <ProfileInfo
