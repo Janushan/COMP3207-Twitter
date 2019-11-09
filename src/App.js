@@ -43,7 +43,7 @@ class App extends Component {
                       <Route path="/" exact component={Home}/>
                       <Route path="/profile" component={Profile}/>
                       <Route path="/compose/tweet" component={ComposeTweet}/>
-                    </Switch>
+                </Switch>
               </Grid>
             </div>
           </Router>
