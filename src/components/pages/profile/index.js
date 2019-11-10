@@ -6,8 +6,7 @@ import TweetList from '../../tweet-post/tweet-list';
 import ProfileInfo from './profile-info';
 import {ProfileApi} from '../../../api/profile-api';
 import SimpleTabs from '../../simple-tabs';
-import FollowingProfile from '../../profle-list';
-import FollowerProfile from '../../profle-list';
+import FollowProfileList from '../../profle-list/profile-list';
 
 import LoadingSpinner from '../../../assets/loading-spinner.gif';
 import "./styles.css";
@@ -64,11 +63,11 @@ export default class Profile extends Component {
                                 followerCount={profile.followerCount}/>
                             <SimpleTabs 
                                 tabOneLabel={"All Tweets"}
-                                tabTwoLabel={"Following"} 
-                                tabThreeLabel={"Followers"} 
+                                tabTwoLabel={profile.followingCount + " Following"} 
+                                tabThreeLabel={profile.followerCount + " Followers"} 
                                 tabOnePanel={<TweetList userId={profile.id}/>}
-                                tabTwoPanel={<FollowingProfile name={"janu"} username={"@janu"} bio={"life is life"} />}
-                                tabThreePanel={<FollowerProfile name={"janu"} username={"@janu"} bio={"life is life"} />} />
+                                tabTwoPanel={<FollowProfileList people={profile.followings} />}
+                                tabThreePanel={<FollowProfileList people={profile.followers} />} />
                         </div>
                         ))}
                     </div>}
