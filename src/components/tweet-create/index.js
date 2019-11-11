@@ -33,10 +33,6 @@ export default class TweetCreate extends Component {
 
     handleSubmit(event) {
         alert('A tweet was submitted: ' + this.state.value);
-        this.id = Auth.getId();
-        this.name = Auth.getName();
-        this.username = Auth.getUsername();
-
         TweetsApi.createTweet(this.id, this.name, this.username, this.state.value)
             .then(res => {
                 console.log(res);
@@ -46,12 +42,17 @@ export default class TweetCreate extends Component {
     }
 
     render() {
+        this.id = Auth.getId();
+        this.name = Auth.getName();
+        this.username = Auth.getUsername();
+        this.initial = InitialHelper.getInitial(this.name);
+
         return (
             <div>
                 <Grid>
                     <Paper>
                         <Grid container>
-                            <Avatar className="tweet-create-avatar">{InitialHelper.getInitial(this.name)}</Avatar>
+                            <Avatar className="tweet-create-avatar">{this.initial}</Avatar>
                             <TextField
                                 id="standard-multiline-flexible"
                                 variant="outlined"

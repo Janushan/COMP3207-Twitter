@@ -33,11 +33,11 @@ export default class Profile extends Component {
     }
 
     componentDidMount() {
-        this.id = Auth.getId();
+        this.id = Auth.getUsername();
         this.setState({
             loading: true
         });
-        ProfileApi.getProfile(this.id)
+        ProfileApi.checkUsernameExists(this.id)
             .then(res => {
                 console.log(res);
                 this.setState({ profile: res.data})

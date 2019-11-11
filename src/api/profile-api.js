@@ -1,5 +1,4 @@
 import axios from 'axios';
-import uuid from 'uuidv4';
 
 export class ProfileApi {
 

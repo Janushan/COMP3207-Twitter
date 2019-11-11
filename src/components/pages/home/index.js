@@ -12,10 +12,8 @@ export default class Home extends Component {
         this.id = '';
     }
 
-    componentWillMount() {
-        this.id = Auth.getId()
-    }
     render() {
+        this.id = Auth.getId()
         return (
             <div>
                 <Grid container direction="column">
