@@ -4,8 +4,17 @@ import Typography from '@material-ui/core/Typography';
 
 import TweetCreate from "../../tweet-create";
 import TweetList from "../../tweet-post/tweet-list";
+import Auth from "../../../auth";
 
 export default class Home extends Component {
+    constructor() {
+        super();
+        this.id = '';
+    }
+
+    componentWillMount() {
+        this.id = Auth.getId()
+    }
     render() {
         return (
             <div>
@@ -13,7 +22,7 @@ export default class Home extends Component {
                     <TweetCreate/>
                     <Typography variant="h6">Feed</Typography>
                     <TweetList
-                        userId={"1"}/>
+                        userId={this.id}/>
                 </Grid>
             </div>
         )

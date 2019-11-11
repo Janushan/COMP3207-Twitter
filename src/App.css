@@ -36,3 +36,9 @@
   text-transform: none;
   font-size: 1rem !important;
 }
+
+/* Text Field */
+
+.MuiInputLabel-root {
+  background: white;
+}

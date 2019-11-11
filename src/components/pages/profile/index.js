@@ -7,6 +7,7 @@ import ProfileInfo from './profile-info';
 import {ProfileApi} from '../../../api/profile-api';
 import SimpleTabs from '../../simple-tabs';
 import FollowProfileList from '../../profle-list/profile-list';
+import Auth from "../../../auth";
 
 import LoadingSpinner from '../../../assets/loading-spinner.gif';
 import "./styles.css";
@@ -14,11 +15,11 @@ import "./styles.css";
 export default class Profile extends Component {
     constructor(props) {
         super(props);
+        this.id = '';
         this.state = {
             isFollowing: true,
             loading: false,
-            profile: [],
-            userId: 1
+            profile: []
         }
 
         this.componentDidMount = this.componentDidMount.bind(this);
@@ -32,10 +33,11 @@ export default class Profile extends Component {
     }
 
     componentDidMount() {
+        this.id = Auth.getId();
         this.setState({
             loading: true
         });
-        ProfileApi.getProfile(this.state.userId)
+        ProfileApi.getProfile(this.id)
             .then(res => {
                 console.log(res);
                 this.setState({ profile: res.data})

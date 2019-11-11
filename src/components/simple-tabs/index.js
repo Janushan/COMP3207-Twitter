@@ -50,7 +50,6 @@ export default function SimpleTabs(props) {
     SimpleTabs.defaultProps = {
         tabOneLabel: "Item One",
         tabTwoLabel: "Item Two",
-        tabThreeLabel: "Item Three",
     };
 
     const [value, setValue] = React.useState(0);

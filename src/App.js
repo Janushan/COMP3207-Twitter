@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { StylesProvider } from '@material-ui/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+import {ProtectedRoute} from "./components/protected-route"
 import Header from "./components/header";
+import Landing from "./components/pages/landing";
 import Home from "./components/pages/home";
 import Profile from "./components/pages/profile";
 import ComposeTweet from "./components/pages/compose-tweet";
@@ -40,9 +42,10 @@ class App extends Component {
               >
                 <Header/>
                 <Switch>
-                      <Route path="/" exact component={Home}/>
-                      <Route path="/profile" component={Profile}/>
-                      <Route path="/compose/tweet" component={ComposeTweet}/>
+                      <Route path="/" exact component={Landing}/>
+                      <ProtectedRoute exact path="/app" component={Home}/>
+                      <ProtectedRoute path="/app/profile" component={Profile}/>
+                      <ProtectedRoute path="/app/compose/tweet" component={ComposeTweet}/>
                 </Switch>
               </Grid>
             </div>

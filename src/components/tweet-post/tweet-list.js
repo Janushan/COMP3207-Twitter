@@ -24,12 +24,6 @@ export default class TweetList extends Component {
                 console.log(res);
                 this.setState({ tweets: res.data})
         })
-        
-        // Axios.get('https://comp3207-twitter-janu.azurewebsites.net/api/users/1/tweets?code=ZbBnDWznza0LC7aFoJ4Cps0acBxSphfotymXOGz5spIIDfcQwi9OsQ==')
-        //     .then(res => {
-        //         console.log(res);
-        //         this.setState({ tweets: res.data })
-        // })
     }
 
     render() {
