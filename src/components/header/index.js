@@ -13,7 +13,11 @@ import image from "../../assets/logo.png";
 import "./styles.css";
 
 export default class Header extends Component {
-
+    constructor(props) {
+        super(props);
+        this.username = '';
+    }
+    
     handleClick() {
         Auth.logout(() => {
             this.props.history.push("/");

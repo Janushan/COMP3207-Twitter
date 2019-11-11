@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import * as PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
@@ -36,7 +38,9 @@ export default class FollowProfile extends Component {
               </Grid>
               <Grid item>
                 <Grid container>
-                  <Typography className="tweet-post-author-name" variant="body1">{name}</Typography>
+                  <Typography className="tweet-post-author-name" variant="body1">
+                    <Link to={`/app/profile/${username}`}>{name}</Link>
+                  </Typography>
                 </Grid>
                 <Grid container>
                     <Typography className="tweet-post-author-info follow-profile-user-info" variant="body1">{username}</Typography>

@@ -8,8 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
 
+import {ProfileApi} from '../../../../api/profile-api';
 import {InitialHelper} from "../../../../helpers/initialHelper"
-
+import Auth from "../../../../auth";
 import "./styles.css";
 
 export default class ProfileInfo extends Component {
@@ -37,8 +38,9 @@ export default class ProfileInfo extends Component {
         super(props);
         this.state = {
             isFollowing: true,
+            self: [],
+            follow: [],
         }
-
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -46,12 +48,34 @@ export default class ProfileInfo extends Component {
         this.setState(state => ({
             isFollowing: !state.isFollowing
         }));
+        ProfileApi.checkUsernameExists(Auth.getUsername())
+            .then(res => {
+                console.log(res);
+                this.setState({ self: res.data})
+        });
+        ProfileApi.checkUsernameExists(this.props.username)
+            .then(res => {
+                console.log(res);
+                this.setState({ follow: res.data})
+        });
+    }
+
+    checkIfFollowers() {
+        console.log(this.state.self);
+        {this.state.self.map(person => (
+            console.log(person.followings)
+            // if(this.props.username.contains(person.followings)) {
+            //     console.log("found it");
+            // };
+        ))}
+
     }
 
     render() {
         const { id, name, username, bio, created, followingCount, followerCount } = this.props;
         var moment = require('moment');
         const initial = InitialHelper.getInitial(name);
+        this.checkIfFollowers();
         
         return (
 
@@ -60,13 +84,15 @@ export default class ProfileInfo extends Component {
                     <Paper className="profile-paper">
                         <Grid className="profile-avatar-row profile-row-small " container alignItems="center">
                             <Avatar className="profile-avatar">{initial}</Avatar>
-                            <Button 
-                                onClick={this.handleClick} 
-                                variant={this.state.isFollowing ? "outlined" : "contained"} 
-                                color="primary"
-                            >
-                                {this.state.isFollowing ? 'Follow' : 'Following'}
-                            </Button>
+                            {username === Auth.getUsername() ? "" : 
+                                <Button 
+                                    onClick={this.handleClick} 
+                                    variant={this.state.isFollowing ? "outlined" : "contained"} 
+                                    color="primary"
+                                >
+                                    {this.state.isFollowing ? 'Follow' : 'Following'}
+                                </Button>
+                            }
                         </Grid>
                         <Grid className="profile-row" container>
                             <Grid container>

@@ -9,7 +9,10 @@ import Header from "./components/header";
 import Landing from "./components/pages/landing";
 import Home from "./components/pages/home";
 import Profile from "./components/pages/profile";
+import AltProfile from "./components/pages/profile/alt";
+import MaryProfile from "./components/pages/profile/mary";
 import ComposeTweet from "./components/pages/compose-tweet";
+import Auth from "./auth";
 
 import './App.css';
 
@@ -29,7 +32,13 @@ const theme = createMuiTheme ({
 });
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.username = '';
+  }
+
   render() {
+    this.username = Auth.getUsername();
     return (
       <MuiThemeProvider theme={theme}>
         <StylesProvider injectFirst>
@@ -44,8 +53,10 @@ class App extends Component {
                 <Switch>
                       <Route path="/" exact component={Landing}/>
                       <ProtectedRoute exact path="/app" component={Home}/>
-                      <ProtectedRoute path="/app/profile" component={Profile}/>
+                      <ProtectedRoute exact path="/app/profile" component={Profile}/>
                       <ProtectedRoute path="/app/compose/tweet" component={ComposeTweet}/>
+                      <ProtectedRoute path="/app/profile/:username" component={AltProfile}/>
+                      {/* <ProtectedRoute exact path="/app/profile/@mary" component={MaryProfile}/> */}
                 </Switch>
               </Grid>
             </div>
