@@ -56,7 +56,6 @@ class App extends Component {
                       <ProtectedRoute exact path="/app/profile" component={Profile}/>
                       <ProtectedRoute path="/app/compose/tweet" component={ComposeTweet}/>
                       <ProtectedRoute path="/app/profile/:username" component={AltProfile}/>
-                      {/* <ProtectedRoute exact path="/app/profile/@mary" component={MaryProfile}/> */}
                 </Switch>
               </Grid>
             </div>
