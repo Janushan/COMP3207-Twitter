@@ -23,7 +23,7 @@ import { Typography } from '@material-ui/core';
 export default class Register extends Component {
     constructor(props) {
         super(props);
-        this.nonEmptyRegex = RegExp('^[a-zA-Z0-9][a-zA-Z0-9\s]*^');
+        this.nonEmptyRegex = RegExp('^[a-zA-Z0-9][a-zA-Z0-9s]*^');
         this.exists = true;
         this.id = '';
         this.username = '';
@@ -39,6 +39,7 @@ export default class Register extends Component {
             bioError: false,
             passwordError: false,
             data: [],
+            allValidated: false,
         };
         
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -81,7 +82,7 @@ export default class Register extends Component {
             return false;
         } else if (this.checkUsernameExists()) {
             console.log("this is the problem");
-            console.log("T/F: " + this.checkUsernameExists() + " username: " + this.state.username);
+            console.log("T/F: " + this.checkUsernameExists());
             this.setState({emailError: false});
             this.setState({nameError: false});
             this.setState({usernameError: true});
@@ -100,12 +101,20 @@ export default class Register extends Component {
             this.setState({passwordError: true});
             return false;
         } 
+        console.log("i'm done");
         this.setState({emailError: false});
         this.setState({nameError: false});
         this.setState({usernameError: false});
         this.setState({bioError: false});
         this.setState({passwordError: false});
         return true
+    }
+
+    checkNoError() {
+        if (this.state.emailError === false && this.state.nameError === false && this.state.usernameError === false && this.state.bioError === false && this.state.passwordError === false) {
+            return  true;
+        }
+        return false;
     }
 
     checkApi() {
@@ -129,33 +138,41 @@ export default class Register extends Component {
         // var bool = true;
         console.log("checking if username exists...")
         this.checkApi();
-        SleepHelper.sleep(500).then(() => {
+        SleepHelper.sleep(5000).then(() => {
             console.log("sleeping...");
             if(this.username === this.state.username) {
                 console.log("return true");
+                this.setState({usernameError: true});
                 return true
             } 
             console.log("return false");
+            this.setState({usernameError: false});
             return false;
         })
         // return bool;
     }
 
     handleRegistrationSuccess = () => {
-        var correct = false;
-        SleepHelper.sleep(500).then(() => {
-            correct = this.handleErrorChecks();
+        this.setState({allValidated: false});
+        var check = this.handleErrorChecks();
+        SleepHelper.sleep(1000).then(() => {
+            this.setState({allValidated: !check});
+            // correct = this.handleErrorChecks();
+            console.log("correct status:");
+            console.log(this.state.allValidated);
+            // console.log(correct);
         })
-        if (correct) {
+        console.log("finished sleeping");
+        if (this.state.allValidated && this.checkNoError()) {
+        // if (correct) {
+            console.log("start the magic");
             this.handleCreateProfile();
             Auth.newLogin(() => {
                 this.props.history.push("/app");
                 }, 
             this.id, this.state.name, this.state.username); 
         };
-        // })
         window.scrollTo(0, 0)
-        SleepHelper.sleep(50000);
         console.log(uuid.fromString(this.state.password));
     }
     
