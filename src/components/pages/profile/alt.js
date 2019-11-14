@@ -7,7 +7,6 @@ import ProfileInfo from './profile-info';
 import {ProfileApi} from '../../../api/profile-api';
 import SimpleTabs from '../../simple-tabs';
 import FollowProfileList from '../../profle-list/profile-list';
-import Auth from "../../../auth";
 
 import LoadingSpinner from '../../../assets/loading-spinner.gif';
 import "./styles.css";

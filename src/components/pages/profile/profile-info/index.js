@@ -10,7 +10,6 @@ import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
 
 import {ProfileApi} from '../../../../api/profile-api';
 import {InitialHelper} from "../../../../helpers/initialHelper";
-import {SleepHelper} from '../../../../helpers/sleepHelper';
 import Auth from "../../../../auth";
 import "./styles.css";
 
@@ -50,7 +49,7 @@ export default class ProfileInfo extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
+    handleClick = () => {
         this.setState(state => ({
             isFollowing: !state.isFollowing
         }));
@@ -79,7 +78,7 @@ export default class ProfileInfo extends Component {
         }
     }
 
-    checkApi() {
+    checkApi = () => {
         ProfileApi.checkUsernameExists(Auth.getUsername())
             .then(res => {
                 console.log(res);
@@ -105,7 +104,7 @@ export default class ProfileInfo extends Component {
         
     }
 
-    checkIfFollow() {
+    checkIfFollow = () => {
         console.log(this.state.self);
         console.log(this.state.selfFollowings); 
         var i;
@@ -122,7 +121,7 @@ export default class ProfileInfo extends Component {
         return false;
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.checkApi();
         var alreadyFollowing = this.checkIfFollow();
         this.setState(state => ({

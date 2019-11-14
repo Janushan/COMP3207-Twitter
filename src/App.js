@@ -10,7 +10,6 @@ import Landing from "./components/pages/landing";
 import Home from "./components/pages/home";
 import Profile from "./components/pages/profile";
 import AltProfile from "./components/pages/profile/alt";
-import MaryProfile from "./components/pages/profile/mary";
 import ComposeTweet from "./components/pages/compose-tweet";
 import Auth from "./auth";
 
